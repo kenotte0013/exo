@@ -1,1 +1,20 @@
+#include <stdio.h>
+#include <math.h>
 
+char A[30];
+char B[30];
+char C[30];
+
+int main()
+{
+  //  for(int i = 0; i< 5; i++) {
+    printf("entrer un mot de moins de 30 lettres\n");
+    scanf("%s",A);
+    int j =30;
+    if (strlen(A) >30) printf("votre mot est trop long\n");
+    for (int i = 0; i< strlen(A)+1; i++) {
+        j = (strlen(A)-i);
+        B[i] = putchar(A[j]);
+    }
+    printf("%s",B);
+}
