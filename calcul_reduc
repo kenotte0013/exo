@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <math.h>
+int prix;
+int reduc;
+int main()
+{
+    printf("entrer le prix d'achat : ");
+    scanf("%d", &prix);
+    if (prix<=100){
+    reduc = prix*0.9;
+    }
+    else 
+        if (prix<=300){ 
+        reduc = prix*0.7;
+        }
+        else
+            if (prix<600){ 
+            reduc = prix*0.5;
+            }
+            else 
+                reduc = prix*0.1;
+        
+printf("prix final : %d", reduc);
+return 0;
+}
