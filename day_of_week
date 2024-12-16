@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int day;
+
+int main()
+{
+printf("jour de la semaine\n");
+scanf("%d", &day);
+switch (day)
+    {
+        case 1 :
+            printf("Hello World");
+            break;
+        case 2 :
+            printf("World");
+            break;
+        case 3 :
+            printf("Hello");
+            break;
+        case 4 :
+            printf("coucou");
+            break;
+        case 5 :
+            printf("d");
+            break;
+        case 6 :
+            printf("samedi");
+            break;
+        case 7 :
+            printf("Dimanche");
+            break;
+    }
+    
+    return 0;
+}
