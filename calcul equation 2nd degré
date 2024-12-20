@@ -1,0 +1,29 @@
+
+#include <stdio.h>
+#include <math.h>
+
+int a;
+int b;
+int c;
+int delta;
+double result1;
+double result2;
+
+int main()
+
+{
+	printf("entrez les paramatres A B et C :\n");
+	scanf("%d %d %d/n ", &a, &b, &c);
+	delta = (b*b-4*a*c);
+	if (delta >= 0) 	
+	{
+		result1 = (-b-sqrt(delta))/(2*a);
+		result2 = (-b+sqrt(delta))/(2*a);
+	//	printf("%d", result1);
+		printf("les solutions de l'equation sont  : %lf et %lf \n",result1,result2);
+	}
+	else
+	{
+	printf("les solutions de l'equation ne sont pas possible\n");
+	}
+    return 0;
