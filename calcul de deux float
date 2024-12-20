@@ -1,0 +1,17 @@
+
+#include <stdio.h>
+#include <math.h>
+
+float x;
+float y;
+float result;
+
+int main()
+
+{
+    scanf("%f %f", &x, &y);
+    result = x*y;
+    printf("resultat : %f\n",result);
+    
+    return 0;
+}
