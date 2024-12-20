@@ -1,0 +1,14 @@
+#include <stdio.h>
+int nine;
+float route;
+
+int main()
+
+{
+    route = 79;
+    nine = 9;
+    printf("Hello World\n");
+    printf("%d\n", nine);
+    printf("%f\n", route);
+    
+    return 0;
