@@ -1,0 +1,17 @@
+
+#include <stdio.h>
+struct test {
+    int age;
+    float taille;
+    char sexe[1];
+};
+int main()
+{
+    struct test jean ={15,1.75,"m"};
+
+    printf("%d\n", jean.age);
+    printf("%s\n", jean.sexe);
+    
+
+    return 0;
+}
