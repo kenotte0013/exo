@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Ouvrier
+{
+    char Nom[30];
+    char Prenom[30];
+    
+}ouv1;
+
+
+int choix = 0;
+int main()
+{
+printf("que voulez vous faire? \n");
+printf(" 1 : editer un ouvrier \n 2 : Afficher un ouvrier \n");
+scanf("%d", &choix);
+switch (choix)
+{
+    case 1 :
+    printf("Entrer le Nom et Prenom de l'ouvrier\n");
+    scanf("%c %c", &ouv1.Nom, &ouv1.Prenom);
+    break;
+    
+    case 2 :
+    printf("vous avez tape 2");
+    break;
+    
+    default:
+    printf("choix incorrect");
+}
+printf("%d %d", ouv1.Nom, ouv1.Prenom);
