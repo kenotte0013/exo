@@ -2,14 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Ouvrier
-{
-    char Nom[30];
-    char Prenom[30];
-    
-}ouv1;
+struct Datenais{
+  int Jour;
+  int Mois;
+  int Annee;
+}Datenais, s1, s2;
 
-
+struct Ouvrier{
+  char Nom[30];
+  char Prenom[30];
+  struct Datenais Date;
+}ouv1, ouv2;
+int idnum;
 int choix = 0;
 int main()
 {
@@ -20,7 +24,7 @@ switch (choix)
 {
     case 1 :
     printf("Entrer le Nom et Prenom de l'ouvrier\n");
-    scanf("%c %c", &ouv1.Nom, &ouv1.Prenom);
+    scanf("%s %s", ouv1.Nom, ouv1.Prenom);
     break;
     
     case 2 :
@@ -30,4 +34,25 @@ switch (choix)
     default:
     printf("choix incorrect");
 }
-printf("%d %d", ouv1.Nom, ouv1.Prenom);
+
+printf("Nouvelle Saisie ou consulter la database? \n");
+printf(" 1 : editer un ouvrier \n 2 : Afficher un ouvrier \n");
+scanf("%d", &choix);
+switch (choix)
+{
+    case 1 :
+    printf("Entrer le Nom et Prenom de l'ouvrier\n");
+    scanf("%s %s", ouv1.Nom, ouv1.Prenom);
+    break;
+    
+    case 2 :
+    Printf("entrer le ou les numéro ID");
+    scanf()
+    For (I = idnum)
+    printf("%s %s", ouv1.Prenom, ouv1.Nom);
+    break;
+    
+    default:
+    printf("choix incorrect");
+}
+}
