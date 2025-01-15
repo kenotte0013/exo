@@ -18,41 +18,39 @@ int choix = 0;
 int main()
 {
 printf("que voulez vous faire? \n");
-printf(" 1 : editer un ouvrier \n 2 : Afficher un ouvrier \n");
+printf(" 1 : editer un ouvrier \n 2 : Afficher un ouvrier \n 3 : Sortir");
 scanf("%d", &choix);
-switch (choix)
-{
-    case 1 :
-    printf("Entrer le Nom et Prenom de l'ouvrier\n");
-    scanf("%s %s", ouv1.Nom, ouv1.Prenom);
-    break;
+do{
+  switch (choix)
+    {
+      case 1 :
+      lecture();
+      //  printf("Entrer le Nom et Prenom de l'ouvrier\n");
+      //  scanf("%s %s", ouv1.Nom, ouv1.Prenom);
+      break;
     
-    case 2 :
-    printf("vous avez tape 2");
-    break;
-    
-    default:
-    printf("choix incorrect");
-}
+      case 2 :
+      printf("entrer le ou les numéro ID");
+      scanf(%d, &idnum);
+     //   For (I = idnum)
+     //   printf("%s %s", ouv1.Prenom, ouv1.Nom);
+     //   break;
 
-printf("Nouvelle Saisie ou consulter la database? \n");
-printf(" 1 : editer un ouvrier \n 2 : Afficher un ouvrier \n");
-scanf("%d", &choix);
-switch (choix)
-{
-    case 1 :
-    printf("Entrer le Nom et Prenom de l'ouvrier\n");
-    scanf("%s %s", ouv1.Nom, ouv1.Prenom);
-    break;
+      case 3 :
+      break;
     
-    case 2 :
-    Printf("entrer le ou les numéro ID");
-    scanf()
-    For (I = idnum)
-    printf("%s %s", ouv1.Prenom, ouv1.Nom);
-    break;
-    
-    default:
-    printf("choix incorrect");
-}
-}
+      default:
+      printf("choix incorrect");
+    }
+  } while(choix !=3)
+
+void lecture(ouv1.Nom, ouv1.Prenom, ouv1.ID, ouv1.Date.Jour, ouv1.Date.Mois, ouv1.Date.Annee)
+  {
+	  printf("Nom :%s  Prenom :%s n°%d né(e) le :%d/%d/%d", ouv1.Nom, ouv1.Prenom, 
+	        ouv1.ID, ouv1.Date.Jour, ouv1.Date.Mois, ouv1.Date.Annee);
+  }
+void ecriture(ouv1.Nom, ouv1.Prenom, ouv1.ID, ouv1.Date.Jour, ouv1.Date.Mois, ouv1.Date.Annee)
+  {
+    printf("Entrer le Prenom Nom date de naissance (jj/mm/aaaa) et le numero de l'ouvrier\n");
+		scanf("%s %s %d/%d/%d %d ", ouv1.Prenom, ouv1.Nom, &ouv1.Date.Jour, &ouv1.Date.Mois,  &ouv1.Date.Annee, &ouv1.ID);
+  }
