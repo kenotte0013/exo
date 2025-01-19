@@ -3,17 +3,17 @@
 
 // Declaration de la structure composant la date de naissance 
 typedef struct{
-  int Jour;                                                                    // Jour enregistré en type integer
-  int Mois;                                                                    // Mois enregistré en type integer
-  int Annee;                                                                   // Année enregistrée en type integer
+  int jour;                                                                    // Jour enregistré en type integer
+  int mois;                                                                    // Mois enregistré en type integer
+  int annee;                                                                   // Année enregistrée en type integer
 }Datenais;                                                                     // appelation de cette structure "Datenais"
 
 // Declaration de la structure composant les informations de l'ouvrier
 typedef struct{
   int ID;                                                                      // Son numéro enregistré en type integer
-  char Nom[30];                                                                // Nom sous forme d'un tableau de 30 caracteres
-  char Prenom[30];                                                             // Prenom sous forme d'un tableau de 30 caracteres
-  Datenais Date;                                                               // structure de la date de naissance défini plus haut
+  char nom[30];                                                                // Nom sous forme d'un tableau de 30 caracteres
+  char prenom[30];                                                             // Prenom sous forme d'un tableau de 30 caracteres
+  Datenais date;                                                               // structure de la date de naissance défini plus haut
 }Ouvrier;                                                                      // appelation de la structure "Ouvrier"
 
 // Declaration de variables utilisees dans le code
@@ -25,17 +25,20 @@ int choix = 0;                                                                 /
 // creation d'une fonction lecture destinée a afficher les donnees presentes dans la strucure ouvrier
 void lecture(Ouvrier *ptr_ouv)
 {
-  printf("Nom :%s  Prenom :%s n°%d né(e) le :%d/%d/%d\n", ptr_ouv->Nom,             
-    ptr_ouv->Prenom, ptr_ouv->ID, ptr_ouv->Date.Jour, ptr_ouv->Date.Mois,
-     ptr_ouv->Date.Annee);
+  printf("Nom :%s  Prenom :%s n°%d né(e) le :%d/%d/%d\n", ptr_ouv->nom,             
+    ptr_ouv->prenom, ptr_ouv->ID, ptr_ouv->date.jour, ptr_ouv->date.mois,
+     ptr_ouv->date.annee);
 }
 
 // creation d'une fonction ecriture enregistrant les donnees saisies par l'utilisateur dans la structure ouvrier
 void ecriture(Ouvrier *ptr_ouv)
 {
-  printf("Entrer le Prenom Nom date de naissance (jj/mm/aaaa) et le numero de l'ouvrier\n");
-  scanf("%s %s %d/%d/%d %d", ptr_ouv->Nom, ptr_ouv->Prenom, &ptr_ouv->Date.Jour,
-        &ptr_ouv->Date.Mois, &ptr_ouv->Date.Annee, &ptr_ouv->ID);
+  printf("Entrer le Prenom et le Nom de l'ouvrier\n");
+  scanf("%s %s",ptr_ouv->prenom, ptr_ouv->nom);
+  printf("Entrez sa date de naissance (jj/mm/aaaa)\n");
+  scanf("%d/%d/%d", &ptr_ouv->Date.Jour, &ptr_ouv->Date.Mois, &ptr_ouv->Date.Annee);  
+  printf("Entrez le numero de l'ouvrier\n");
+  scanf("%d",&ptr_ouv->ID);
 }
 
 int main()
@@ -45,43 +48,43 @@ int main()
 
   // Boucle de programme affichant le menu et attendant la saisie de l'utilisateur
   do
-  {                                                                                 //
-    printf("que voulez vous faire? \n");                                            //
+  {                                                                            //
+    printf("que voulez vous faire? \n");                                       //
     printf(" 1 : editer un ouvrier \n 2 : Afficher un ouvrier \n 3 : Liste ouvrier \n 4 : Sortir\n");//
-    scanf("%d", &choix);                                                            // enregistrement du choix utilisateur sous la variable "choix"
-    switch (choix)                                                                  //
+    scanf("%d", &choix);                                                       // enregistrement du choix utilisateur sous la variable "choix"
+    switch (choix)                                                             //
     {
-    case 1:                                                                         // si l'utilisateur a choisi "1"
-      n = n + 1;                                                                    // incrementation de 1 de n correspondant a l'effectif
-      ecriture(&effectif[n]);                                                       // appel de la fonction ecriture avec pointeur de valeur n
-      break;                                                                        // fin et retour au menu
+    case 1:                                                                    // si l'utilisateur a choisi "1"
+      n = n + 1;                                                               // incrementation de 1 de n correspondant a l'effectif
+      ecriture(&effectif[n]);                                                  // appel de la fonction ecriture avec pointeur de valeur n
+      break;                                                                   // fin et retour au menu
 
-    case 2:                                                                         // si l'utilisateur a choisi "2"
-      printf("entrer le ou les numéro ID\n");                                       // affichage des consignes pour saisi utilisateur
-      scanf("%d", &idnum);                                                          // lecture saisie utilisateur et inscription en variable idnum du n° ouvrier a afficher
-      for (i = 0; i <= n; i++)                                                      // creation d'une boucle parcourant l'effectif total
-      {                                                                             //
-        if (effectif[i].ID == idnum)                                                // condition pour trouver le numero ouvrier
-        {                                                                           //
-          lecture(&effectif[i]);                                                    // appel fonction lecture avec pointeur sur 
-        };                                                                          // la strucure ouvrier recherchee
-      };                                                                            //
-      break;                                                                        // fin et retour au menu
+    case 2:                                                                    // si l'utilisateur a choisi "2"
+      printf("entrer le ou les numéro ID\n");                                  // affichage des consignes pour saisi utilisateur
+      scanf("%d", &idnum);                                                     // lecture saisie utilisateur et inscription en variable idnum du n° ouvrier a afficher
+      for (i = 0; i <= n; i++)                                                 // creation d'une boucle parcourant l'effectif total
+      {                                                                        //
+        if (effectif[i].ID == idnum)                                           // condition pour trouver le numero ouvrier
+        {                                                                      //
+          lecture(&effectif[i]);                                               // appel fonction lecture avec pointeur sur 
+        };                                                                     // la strucure ouvrier recherchee
+      };                                                                       //
+      break;                                                                   // fin et retour au menu
 
-    case 3:                                                                         // si l'utilisateur a choisi le "3"
-      printf("\n");                                                                 // ligne vide pour clarifier l'affichage console
-      for (i = 1; i <= n; i++)                                                      // creation d'une boucle parcourant l'effectif total
-      {                                                                             //
-        lecture(&effectif[i]);                                                      // appel de la fonction pour affichage de l'ouvrier
-      }                                                                             // avec le pointeur egale a la valeur de la boucle
-      printf("\n");                                                                 // ligne vide pour clarifier l'affichage console
-      break;                                                                        // fin retour au menu
+    case 3:                                                                    // si l'utilisateur a choisi le "3"
+      printf("\n");                                                            // ligne vide pour clarifier l'affichage console
+      for (i = 1; i <= n; i++)                                                 // creation d'une boucle parcourant l'effectif total
+      {                                                                        //
+        lecture(&effectif[i]);                                                 // appel de la fonction pour affichage de l'ouvrier
+      }                                                                        // avec le pointeur egale a la valeur de la boucle
+      printf("\n");                                                            // ligne vide pour clarifier l'affichage console
+      break;                                                                   // fin retour au menu
 
-    case 4:                                                                         // si l'utilisateur a choisi le "4"
-      break;                                                                        // fin retour au menu pour sortir du programme
+    case 4:                                                                    // si l'utilisateur a choisi le "4"
+      break;                                                                   // fin retour au menu pour sortir du programme
 
-    default:                                                                        // condition si la saisie utilisateur n'est pas prevue
-      printf("choix incorrect\n");                                                  // affichage d'un texte expliquant l'erreur
-    }                                                                               // fin de la condition switch
-  } while (choix != 4);                                                             // condition de sorti de la bouche avec choix == 4
+    default:                                                                   // condition si la saisie utilisateur n'est pas prevue
+      printf("choix incorrect\n");                                             // affichage d'un texte expliquant l'erreur
+    }                                                                          // fin de la condition switch
+  } while (choix != 4);                                                        // condition de sorti de la bouche avec choix == 4
 }
