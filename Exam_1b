@@ -25,7 +25,7 @@ int choix = 0;                                                                 /
 // creation d'une fonction lecture destinée a afficher les donnees presentes dans la strucure ouvrier
 void lecture(Ouvrier *ptr_ouv)
 {
-  printf("Nom :%s  Prenom :%s n°%d né(e) le :%d/%d/%d\n", ptr_ouv->nom,             
+  printf("Nom :%s Prenom :%s n°%d né(e) le :%d/%d/%d\n", ptr_ouv->nom,             
     ptr_ouv->prenom, ptr_ouv->ID, ptr_ouv->date.jour, ptr_ouv->date.mois,
      ptr_ouv->date.annee);
 }
@@ -36,7 +36,7 @@ void ecriture(Ouvrier *ptr_ouv)
   printf("Entrer le Prenom et le Nom de l'ouvrier\n");
   scanf("%s %s",ptr_ouv->prenom, ptr_ouv->nom);
   printf("Entrez sa date de naissance (jj/mm/aaaa)\n");
-  scanf("%d/%d/%d", &ptr_ouv->Date.Jour, &ptr_ouv->Date.Mois, &ptr_ouv->Date.Annee);  
+  scanf("%d/%d/%d", &ptr_ouv->date.jour, &ptr_ouv->date.mois, &ptr_ouv->date.annee);  
   printf("Entrez le numero de l'ouvrier\n");
   scanf("%d",&ptr_ouv->ID);
 }
