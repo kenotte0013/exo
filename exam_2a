@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+// Déclaration de la struture composant les notes de l'apprenti
+typedef struct{
+  float exam1;                                                                 // note du premier examen enregistré en type float
+  float exam2;                                                                 // note du second examen enregistré en type float
+  float exam3;                                                                 // note du troisieme exam enregistrée en type float
+}Notes;                                                                        // appelation de la structure "Notes"
+
+// Déclaration de la structure composant les informations de l'apprenti
+typedef struct{
+  char Nom[30];                                                                // Nom sous forme d'un tableau de 30 caracteres
+  char Prenom[30];                                                             // Prenom sous forme d'un tableau de 30 caracteres
+  Notes exams;                                                                 // structure des notes de l'apprenti défini plus haut
+  float moyenne;                                                               // Moyenne des notes de l'apprenti en type float
+}Apprenti;                                                                     // appelation de la structure "Apprenti"
+
+float moy = 0;                                                                 // creation variable de type float stockant la moyenne
+
+// fontion  calculant la moyenne des notes d'un apprenti 
+void calculmoy(Apprenti*ptr_n)
+{
+    moy = (ptr_n->exams.exam1 + ptr_n->exams.exam2 + ptr_n->exams.exam3)/3;    // calcul de la moyenne sur les 3 notes de la structure 
+}
+
+int main()
+{
+  Apprenti app1;                                                             // declaration du premier apprenti
+  Notes suivi_1;                                                             // declaration des notes du premier apprenti
+  printf("Veuillez entrer le nom et le prenom de l'apprenti(e)\n");                 // affichage des consignes pour la saisie utilisateur
+  scanf("%s %s",app1.Prenom, app1.Nom);                                         //    
+  printf("Veuillez entrer ses notes :\n");                                          //
+  scanf("%f %f %f", &app1.exams.exam1, &app1.exams.exam2, &app1.exams.exam3);           //
+  //  struct Apprenti App1 = {"Connors", "Sarah"};                                    // entrée des donnees de l'apprenti dans la structure
+  //  struct Notes suivi_1 ={13,12,9};                                                // entrée des notes dans la structure Note
+    calculmoy(&app1);                                                             // appel de la fonction : calcul de la moyenne
+    app1.moyenne = moy;
+    printf("La moyenne de l'apprenti %s %s est de : %.2f \n", 
+    app1.Prenom, app1.Nom, app1.moyenne);                                                    // affichage de la moyenne de l'apprenti
+}
+
