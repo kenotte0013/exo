@@ -1,45 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <string.h>
-
-// Déclaration de la struture composant les notes de l'apprenti
-typedef struct{
-  float note[3];                                                               // note du premier examen enregistré en type float
-}Notes;                                                                        // appelation de la structure "Notes"
 
 // Déclaration de la structure composant les informations de l'apprenti
 typedef struct{
-  char Nom[30];                                                                // Nom sous forme d'un tableau de 30 caracteres
-  char Prenom[30];                                                             // Prenom sous forme d'un tableau de 30 caracteres
-  Notes exams;                                                                 // structure des notes de l'apprenti défini plus haut
-  float moyenne;                                                               // Moyenne des notes de l'apprenti en type float
-}Apprenti;                                                                     // appelation de la structure "Apprenti"
+  char nom[30];                                                               // Nom sous forme d'un tableau de 30 caracteres
+  char prenom[30];                                                            // Prenom sous forme d'un tableau de 30 caracteres
+  float note[3];                                                              // structure des notes de l'apprenti défini plus haut
+  float moyenne;                                                              // Moyenne des notes de l'apprenti en type float
+}Apprenti;                                                                    // appelation de la structure "Apprenti"
 
-float moy = 0;                                                                 // creation variable de type float stockant la moyenne
-
+float moy = 0;                                                                // creation variable de type float stockant la moyenne
+Apprenti app1;                                                                // declaration du premier apprenti
+ 
 // fontion  calculant la moyenne des notes d'un apprenti 
-void calculmoy(Apprenti*ptr_n)
+void calculmoy()
 {
-    moy = (ptr_n->exams.note[1] + ptr_n->exams.note[2] + ptr_n->exams.note[3])/3;    // calcul de la moyenne sur les 3 notes de la structure 
-}
-
+  moy = (app1.note[0] + app1.note[1] + app1.note[2]) / 3;                     // calcul mathematique de la moyenne
+};
 int main()
 {
-  Apprenti app1;                                                              // declaration du premier apprenti
-  Notes suivi_1;                                                              // declaration des notes du premier apprenti
   int i;                                                                      // declaration d'une variable pour une boucle
   printf("Veuillez entrer le nom et le prenom de l'apprenti(e)\n");           // affichage des consignes pour la saisie utilisateur
-  scanf("%s %s",app1.Prenom, app1.Nom);                                       // lecture du prenom et du nom et inscription en structure   
+  scanf("%s %s",app1.prenom, app1.nom);                                       // lecture du prenom et du nom et inscription en structure   
   printf("Veuillez entrer ses notes :\n");                                    //
   for(i=0;i<3;i++)                                                            // Boucle de 3 tours
   {
     printf("note num %d\n",i+1);                                              // affichage des consignes pour la saisie utilisateur
-    scanf("%f", &app1.exams.note[i]);                                         // lecture de la saisie et stockage de la valeur dans la structure
+    scanf("%f", &app1.note[i]);                                               // lecture de la saisie et stockage de la valeur dans la structure
   }
-    calculmoy(&app1);                                                         // appel de la fonction : calcul de la moyenne
-    app1.moyenne = moy;                                                       // enregistrement de la moyenne dans la structure apprenti
-    printf("La moyenne de l'apprenti %s %s est de : %.2f \n",               
-    app1.Prenom, app1.Nom, app1.moyenne);                                     // affichage de la moyenne de l'apprenti avec un message
+  calculmoy(&app1.note[i]);                                                   // appel de la fonction calculant la moyenne
+  app1.moyenne = moy;                                                         // enregistrement de la moyenne dans la structure apprenti
+  printf("La moyenne de l'apprenti %s %s est de : %.2f \n",                   // 
+    app1.prenom, app1.nom, app1.moyenne);                                     // affichage de la moyenne de l'apprenti avec un message
 }
 
