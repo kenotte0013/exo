@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Declaration de la structure composant la date de naissance et appelation de la structure "Datenais"
+typedef struct{
+  int Jour;
+  int Mois;
+  int Annee;
+}DateNais;
+
+// Declaration de la structure composant les informations de l'ouvrier et appelation de la structure "Ouvrier"
+typedef struct{
+  char Nom[30];
+  char Prenom[30];
+  DateNais Date;
+}Ouvrier;                                                                   
+
+int main()
+{
+//Declaration du premier ouvrier "ouv1"
+  Ouvrier ouv1;                   
+
+// affichage des données a saisir pour enregistrer un ouvrier  
+// lecture des deux chaines de carateres sous forme de string et enregistrement dans la structure Ouvrier
+  printf("Veuillez entrer le prenom et le nom de l'ouvrier\n");
+  scanf("%s %s", ouv1.Prenom, ouv1.Nom);
+
+// affichage des données a saisir pour enregistrer la date de naissance  
+// lecture des chiffres sous la forme d'integer et enregistrement dans la structure Ouvrier
+  printf("entrer sa date de naissance sous la forme jj/mm/aaaa\n");
+  scanf("%d/%d/%d", &ouv1.Date.Jour ,&ouv1.Date.Mois, &ouv1.Date.Annee);
+
+// Affichage des données : Prenom Nom et date de naissance lu dans les structures
+  printf("%s %s %d/%d/%d \n",ouv1.Nom, ouv1.Prenom, ouv1.Date.Jour,ouv1.Date.Mois,ouv1.Date.Annee);         
+}
