@@ -1,0 +1,147 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/// Déclaration de la struture composant les notes de l'apprenti
+typedef struct
+{
+  float exam1; // note du premier examen enregistré en type float
+  float exam2; // note du second examen enregistré en type float
+  float exam3; // note du troisieme exam enregistrée en type float
+} Notes;
+// Déclaration de la structure composant les informations de l'apprenti
+typedef struct
+{
+  char nom[30];    // Nom sous forme d'un tableau de 30 caracteres
+  char prenom[30]; // Prenom sous forme d'un tableau de 30 caracteres
+  Notes exams;     // structure des notes de l'apprenti défini plus haut
+  float moyenne;   // Moyenne des notes de l'apprenti en type float
+} Apprenti;
+
+// Declaration de variables utilisees dans le code
+float moy = 0;                            // variable de type float stockant la moyenne
+int selection = 0;                        // variable du choix programme de l'utilisateur  
+char idnum[30];                            // numero de l'apprenti(e) a retrouver
+char bestappn[30];                        // nom de l'apprenti(e) a rechercher ou a trouver
+char bestapp[30];                         // prenom de l'apprenti(e) a rechercher ou a trouver 
+int i = 0;                                // compteur de boucle
+int n = 0;                                // compteur du total d'apprenti(e)s = effectif total
+float moyenneclasse = 0;                  // variable stockant la moyenne de l'ensemble des apprenti(e)s
+int flag = 0;                             // booleen pour reperer recherche infructeuse
+float max = 0;                            // variable pour stocker la note la plus elevee
+//Apprenti app1;                          
+
+// fontion  calculant la moyenne des notes d'un(e) apprenti(e)
+void calculmoy(Apprenti *ptr_app)
+{
+  moy = (ptr_app->exams.exam1 + ptr_app->exams.exam2 + ptr_app->exams.exam3) / 3; // calcul de la moyenne sur les 3 notes de la structure
+//  app1.moyenne = moy;
+}
+
+// creation d'une fonction lecture destinée a afficher les donnees presentes dans la strucure apprenti
+void lecture(Apprenti *ptr_app)
+{
+  printf("Nom :%s Prenom :%s a une moyenne de :%0.2f\n", ptr_app->nom, ptr_app->prenom, ptr_app->moyenne);
+}
+
+// creation d'une fonction ecriture enregistrant les donnees saisies par l'utilisateur dans la structure apprenti
+void ecriture(Apprenti *ptr_app)
+{
+  printf("Entrer le Prenom et le Nom de l'apprenti(e)\n");      
+  scanf("%s %s", ptr_app->prenom, ptr_app->nom);                    
+  printf("Entrez sa premiere note\n");
+  scanf("%f", &ptr_app->exams.exam1);
+  printf("Entrez sa seconde note\n");
+  scanf("%f", &ptr_app->exams.exam2);
+  printf("Entrez sa troisieme note\n");
+  scanf("%f", &ptr_app->exams.exam3);
+  printf("\n");
+}
+
+int main()
+{
+  // Declaration d'un tableau de 30 structures apprenti nommé "effectif"
+  Apprenti effectif[20];
+  do
+  {
+    printf("Veuillez selectionner votre action: \n1 : Enregistrement notes Apprenti(e)\
+      \n2 : Affichage de la Moyenne d'un(e) Apprenti(e)\n3 : Affichage Moyenne de l'ensemble des apprenti(e)s\
+      \n4 : Affichage Meilleure note\n5 : Sortir\n");
+    scanf("%d", &selection); // enregistrement du choix utilisateur sous la variable "selection"
+    switch (selection)       //
+    {
+    case 1:                   // si l'utilisateur a choisi "1"
+      n = n + 1;              // incrementation de 1 de n correspondant a l'effectif
+      ecriture(&effectif[n]); // appel de la fonction ecriture avec pointeur de valeur n
+      break;                  // fin et retour au menu
+
+    case 2:                                       // si l'utilisateur a choisi "2"
+      printf("Entrez le Nom de l'apprenti(e)\n"); // affichage des consignes pour saisi utilisateur
+      scanf("%s", idnum);                         // lecture saisie utilisateur et inscription en variable idnum de l'apprenti(e) a afficher
+      for (i = 1; i < n; i++)                     // creation d'une boucle parcourant l'effectif total
+      {
+        strcpy(bestappn, effectif[i].nom);        // copi du nom en variable 
+        if (strcmp(bestappn, idnum) == 0)         // condition pour trouver le numero ouvrier
+        { //
+          flag = 1;                               // levage du drapeau (desactive la condition echec de recherche)
+          calculmoy(&effectif[i]);                // appel de la fonction pour le calcul de la moyenne de l'apprenti(e)
+          strcpy(bestappn, effectif[i].nom);      // copie en variable du nom de l'apprenti(e)
+          strcpy(bestapp, effectif[i].prenom);    // copie en variable du prenom de l'apprenti(e)
+          printf("\n");                           // creation d'un saut de ligne pour aleger l'affichage      
+          printf("TROUVE : %s %s moyenne de %.2f\n", bestapp, bestappn, moy);  // affichage des variables correspondant a l'apprenti(e) recherche
+          printf("\n");                           // creation d'un saut de ligne pour aleger l'affichage        
+        }
+      };                                          //
+      if (flag == 0)                              // condition si la recherche a été infructueuse (drapeau non leve)
+      {
+        printf("nom inconnu!!\n");                // affichage de l'echec de la recherche
+        printf("\n");                             // creation d'un saut de ligne pour aleger l'affichage      
+      }
+      flag = 0;                                   // Reinitialisation du drapeau
+      break;                                      // fin et retour au menu
+
+    case 3:                                                       // si l'utilisateur a choisi le "3"
+      for (i = 1; i <= n; i++)                                    // creation d'une boucle parcourant l'effectif total
+      {                                                           //
+        calculmoy(&effectif[i]);                                  // appel de la fonction de calcul de la moyenne pour chaque apprenti(e)
+        moyenneclasse = moyenneclasse + moy;                      // addition de chaque moyenne d'apprenti(e)
+      };                                                          // 
+      moyenneclasse = moyenneclasse / n;                          // division par le nombre d'apprenti(e)s pour avoir la moyenne generale
+      printf("La moyenne de la classe est de %0.2f\n", moyenneclasse); // ligne vide pour clarifier l'affichage console
+      moyenneclasse = 0;                                          // Reinitialisation de la variable 
+      printf("\n");                                               // ligne vide pour clarifier l'affichage console
+      break;                                                      // fin retour au menu
+
+    case 4:
+      printf("\n");                                                                     // ligne vide pour clarifier l'affichage console
+      for (i = 1; i <= n; i++)                                                          // creation d'une boucle parcourant l'effectif total
+      { //condition avec trois ou logique comparant la variable de la note maximale avec une des notes de l'apprenti(e)
+        if (effectif[i].exams.exam1 > max || effectif[i].exams.exam2 > max || effectif[i].exams.exam3 > max)
+        {                                                                               //si une est superieur a la variable
+          max = effectif[i].exams.exam1;                                                // remplacement de la valeur de la variable
+          if (effectif[i].exams.exam2 > max)                                            // si la seconde note est plus elevee
+          {                                                                             //      
+            max = effectif[i].exams.exam2;                                              // remplacement par la seconde note
+          } 
+          if (effectif[i].exams.exam3 > max)                                            // si la troisieme note est plus elevee
+          {
+            max = effectif[i].exams.exam3;                                              // remplacement par la seconde note
+          }                                                                             //
+          strcpy(bestappn, effectif[i].nom);                                            // recuperation du nom de l'apprenti(e)      
+          strcpy(bestapp, effectif[i].prenom);                                          // recuperation du prenom de l'apprenti(e)
+        };                                                                              //  
+      };                                                                                //    
+      printf("La meilleur note est : %0.2f obtenue par %s %s \n", max, bestapp, bestappn);//
+      bestapp[30] = 0;                                                                  // Reinitialisation de la variable
+      bestappn[30] = 0;                                                                 // Reinitialisation de la variable  
+      printf("\n");                                                                     // ligne vide pour clarifier l'affichage console
+      break;                                                                            // fin retour au menu
+
+    case 5:                                                                                        // si l'utilisateur a choisi le "5"
+      break;                                                                                       // fin retour au menu pour sortir du programme
+
+    default:                                                                                       // condition si la saisie utilisateur n'est pas prevue
+      printf("choix incorrect\n");                                                                 // affichage d'un texte expliquant l'erreur
+    }
+  } while (selection != 5);                                                             // condition de sorti de la bouche avec choix == 5
+}
