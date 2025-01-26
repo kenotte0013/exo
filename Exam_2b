@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 /// Déclaration de la struture composant les notes de l'apprenti
 typedef struct
 {
